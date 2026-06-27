@@ -164,6 +164,11 @@ function cleanProviderId(value: unknown, fallback: string) {
   return text || fallback;
 }
 
+function cleanChromePath(value: unknown, fallback: string) {
+  const text = typeof value === "string" ? value.trim() : "";
+  return text && /chrome\.exe$/i.test(text) && !/msedge|chromium/i.test(text) ? text : fallback;
+}
+
 export function saveSettings(next: Partial<AppSettings>) {
   const current = getSettings();
   const raw = { ...current, ...next };
@@ -179,7 +184,7 @@ export function saveSettings(next: Partial<AppSettings>) {
     providerId: cleanProviderId(raw.providerId, current.providerId),
     providerName: cleanString(raw.providerName, current.providerName),
     apiKey: typeof raw.apiKey === "string" ? raw.apiKey.trim() : "",
-    browser: cleanString(raw.browser, current.browser),
+    browser: cleanChromePath(raw.browser, current.browser),
     searchEngine: cleanString(raw.searchEngine, current.searchEngine),
     storageBudgetGb: clampInteger(raw.storageBudgetGb, current.storageBudgetGb || 200, 1, 2000),
     weightProfile: option(raw.weightProfile, ["iq4ks", "gguf", "autoround"] as const, current.weightProfile),

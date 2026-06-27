@@ -1113,7 +1113,7 @@ export default function Page() {
                     </SettingsGroup>
 
                     <SettingsGroup title="Browser">
-                      <TextField label="Chromium command" value={settings.browser} onChange={(value) => updateSetting("browser", value)} />
+                      <TextField label="Chrome command" value={settings.browser} onChange={(value) => updateSetting("browser", value)} />
                       <TextField label="Search URL prefix" value={settings.searchEngine} onChange={(value) => updateSetting("searchEngine", value)} />
                     </SettingsGroup>
                   </div>

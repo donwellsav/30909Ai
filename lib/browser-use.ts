@@ -9,18 +9,15 @@ let browserPromise: Promise<Browser> | null = null;
 
 function browserCommand() {
   const configured = getSettings().browser || "";
-  if (configured && !/msedge/i.test(configured)) return configured;
+  if (configured && /chrome\.exe$/i.test(configured) && !/msedge|chromium/i.test(configured)) return configured;
 
   const candidates = [
-    path.join(process.env.LOCALAPPDATA || "", "Chromium", "Application", "chrome.exe"),
-    path.join(process.env.PROGRAMFILES || "", "Chromium", "Application", "chrome.exe"),
-    path.join(process.env["PROGRAMFILES(X86)"] || "", "Chromium", "Application", "chrome.exe"),
     path.join(process.env.LOCALAPPDATA || "", "Google", "Chrome", "Application", "chrome.exe"),
     path.join(process.env.PROGRAMFILES || "", "Google", "Chrome", "Application", "chrome.exe"),
     path.join(process.env["PROGRAMFILES(X86)"] || "", "Google", "Chrome", "Application", "chrome.exe"),
   ];
   const found = candidates.find((candidate) => existsSync(candidate));
-  if (!found) throw new Error("Chromium/Chrome was not found. Install Chromium or Chrome, then retry Browser Use.");
+  if (!found) throw new Error("Google Chrome was not found. Install Google Chrome, then retry Browser Use.");
   return found;
 }
 

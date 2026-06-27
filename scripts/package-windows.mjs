@@ -118,7 +118,7 @@ writeFileSync(path.join(dist, "README.txt"), [
   "Override port: set PORT=3091 before launching.",
   "",
   "Bundled: production app build, production Node dependencies, node.exe launcher runtime.",
-  "External machine dependencies remain external: Chrome/Chromium, WSL, Docker, NVIDIA drivers, model files.",
+  "External machine dependencies remain external: Google Chrome, WSL, Docker, NVIDIA drivers, model files.",
   "",
 ].join("\r\n"));
 
