@@ -6,6 +6,7 @@
     "dev": "next dev --turbo -p 3090",
     "build": "next build",
     "start": "next start -p 3090",
+    "package:win": "node scripts/package-windows.mjs",
     "check:browser-agent": "node scripts/check-browser-agent.mjs",
     "lint": "next lint"
   },
